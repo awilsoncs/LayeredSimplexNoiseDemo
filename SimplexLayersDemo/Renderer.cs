@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimplexNoise;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -73,7 +74,7 @@ namespace SimplexLayersDemo
         /// <param name="layers">Number of layers of simplex noise to apply</param>
         /// <param name="scale">Sample width for the noise function. Higher width introduces more
         /// variance between two positions.</param>
-        public void AddSimplexNoise(int layers, float scale)
+        public void AddSimplexNoise(int layers, float scale, int seed)
         {
             if (layers <= 0)
                 return;
@@ -89,7 +90,7 @@ namespace SimplexLayersDemo
                     //With infinite layers, this sum will max at 1, so any positive number will be safe.
                     for(float k = 0f; k < layers; k += 1.0f)
                     {
-                        map[i, j] += GetNoise(i, j, scale * (float)Math.Pow(2, k), 0.5f * (float)Math.Pow(0.5, k));
+                        map[i, j] += GetNoise(i, j, seed, scale * (float)Math.Pow(2, k), 0.5f * (float)Math.Pow(0.5, k));
                     }
                     numberPxLeft -= 1.0f;
                     progressBar.Value = 50 - (int)((numberPxLeft / numberPx) * 50.0f);
@@ -106,9 +107,10 @@ namespace SimplexLayersDemo
         /// sample positions.</param>
         /// <param name="max">The maximum value to return.</param>
         /// <returns></returns>
-        private float GetNoise(int x, int y, float scale, float max)
+        private float GetNoise(int x, int y, int z, float scale, float max)
         {
-            return (SimplexNoise.Noise.Generate(x * scale, y * scale) + 1f) * (max / 2f);
+            //986543 is a large prime. Any Z's above 500000 or so 
+            return (Noise.Generate(x * scale, y * scale, z % 986543) + 1f) * (max / 2f);
         }
     }
 }

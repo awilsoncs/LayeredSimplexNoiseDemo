@@ -9,6 +9,8 @@ namespace SimplexLayersDemo
 {
     public partial class Main : Form
     {
+        Random rng = new Random();
+
         public Main()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace SimplexLayersDemo
             int y = pictureBox2.Height;
             int layers = (int)NumericLayers.Value;
             float scale = float.Parse(TextBoxScale.Text);
+            int seed = (int)float.Parse(TextBoxSeed.Text);
 
             if (scale <= 0)
             {
@@ -30,7 +33,7 @@ namespace SimplexLayersDemo
             }
             Renderer renderer = new Renderer(x, y);
             renderer.progressBar = ProgressBar;
-            renderer.AddSimplexNoise(layers, scale);
+            renderer.AddSimplexNoise(layers, scale, seed);
             pictureBox2.Image = renderer.RenderBitmap();
             ProgressBar.Value = 0;
             LogToConsole("Done");
@@ -39,6 +42,11 @@ namespace SimplexLayersDemo
         private void LogToConsole(String str)
         {
             LabelConsolePrint.Text = str;
+        }
+
+        private void ButtonRollSeed_Click(object sender, EventArgs e)
+        {
+            TextBoxSeed.Text = "" + rng.Next();
         }
     }
 }

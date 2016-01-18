@@ -38,7 +38,7 @@
             this.ScaleLabel = new System.Windows.Forms.Label();
             this.LabelSeed = new System.Windows.Forms.Label();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TextBoxSeed = new System.Windows.Forms.TextBox();
             this.ButtonRollSeed = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericLayers)).BeginInit();
@@ -140,30 +140,29 @@
             this.ProgressBar.Size = new System.Drawing.Size(463, 23);
             this.ProgressBar.TabIndex = 11;
             // 
-            // textBox2
+            // TextBoxSeed
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(12, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(94, 22);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.Text = "12345";
+            this.TextBoxSeed.Location = new System.Drawing.Point(12, 33);
+            this.TextBoxSeed.Name = "TextBoxSeed";
+            this.TextBoxSeed.Size = new System.Drawing.Size(94, 22);
+            this.TextBoxSeed.TabIndex = 12;
+            this.TextBoxSeed.Text = "12345";
             // 
             // ButtonRollSeed
             // 
-            this.ButtonRollSeed.Enabled = false;
             this.ButtonRollSeed.Location = new System.Drawing.Point(112, 33);
             this.ButtonRollSeed.Name = "ButtonRollSeed";
             this.ButtonRollSeed.Size = new System.Drawing.Size(58, 23);
             this.ButtonRollSeed.TabIndex = 13;
             this.ButtonRollSeed.Text = "Reroll";
             this.ButtonRollSeed.UseVisualStyleBackColor = true;
+            this.ButtonRollSeed.Click += new System.EventHandler(this.ButtonRollSeed_Click);
             // 
             // Main
             // 
             this.ClientSize = new System.Drawing.Size(1018, 485);
             this.Controls.Add(this.ButtonRollSeed);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.TextBoxSeed);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.LabelSeed);
             this.Controls.Add(this.ScaleLabel);
@@ -196,7 +195,7 @@
         private System.Windows.Forms.Label ScaleLabel;
         private System.Windows.Forms.Label LabelSeed;
         private System.Windows.Forms.ProgressBar ProgressBar;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TextBoxSeed;
         private System.Windows.Forms.Button ButtonRollSeed;
     }
 }
